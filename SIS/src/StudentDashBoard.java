@@ -14,6 +14,8 @@ public class StudentDashBoard extends javax.swing.JFrame {
      */
     public StudentDashBoard() {
         initComponents();
+        setTitle("Student DashBoard");
+        this.setLocationRelativeTo(null);
     }
 
     /**
