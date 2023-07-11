@@ -1,13 +1,10 @@
 package ui;
 
 import controller.SISController;
-import ui.AdminDashboard;
 import javax.swing.*;
 
 import java.awt.*;
 import java.awt.event.*;
-import model.Message;
-import model.MessageType;
 import model.Response;
 import model.UserDTO;
 
@@ -21,7 +18,7 @@ public class LoginUI extends JFrame {
 
     public LoginUI() {
         sisController=new SISController();
-        setTitle("UAS - Login");
+        setTitle("SIS - Login");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setPreferredSize(new Dimension(600, 400));
         ImageIcon icon = new ImageIcon("icon.png");

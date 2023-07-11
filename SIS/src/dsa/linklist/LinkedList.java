@@ -3,8 +3,8 @@ package dsa.linklist;
 import model.Message;
 import model.MessageType;
 
-
 public class LinkedList<T> {
+
     private Node<T> head;
     private int size;
 
@@ -114,7 +114,7 @@ public class LinkedList<T> {
             System.out.println();
         }
     }
-    
+
     public Node<T> find(T key) {
         Node<T> temp = head;
         while (temp != null) {
@@ -125,7 +125,7 @@ public class LinkedList<T> {
         }
         return null;
     }
-    
+
     public String getErrorMessages() {
         StringBuilder sb = new StringBuilder();
         if (isEmpty()) {
@@ -133,30 +133,32 @@ public class LinkedList<T> {
         } else {
             Node<Message> n = (Node<Message>) head;
             while (n != null) {
-                if(sb.length() > 0) 
+                if (sb.length() > 0) {
                     sb.append(",\n");
-                if(n.getData().Type == MessageType.Error || n.getData().Type == MessageType.Exception)
-                     sb.append(n.getData().Message);
+                }
+                if (n.getData().Type == MessageType.Error || n.getData().Type == MessageType.Exception) {
+                    sb.append(n.getData().Message);
+                }
                 n = n.next;
             }
         }
- 
+
         return sb.toString();
     }
-    
+
     public boolean hasError() {
         if (isEmpty()) {
             return false;
         } else {
             Node<Message> n = (Node<Message>) head;
             while (n != null) {
-                if(n.data.Type == MessageType.Error || n.data.Type == MessageType.Exception)
-                return true;
+                if (n.data.Type == MessageType.Error || n.data.Type == MessageType.Exception) {
+                    return true;
+                }
             }
-            
+
         }
         return false;
-}
-
+    }
 
 }

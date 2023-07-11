@@ -19,7 +19,7 @@ public class AdminDashboard extends JFrame {
     public AdminDashboard() {
        
 
-            setTitle("Attendance Management System - Dashboard");
+            setTitle("Student Information System - Dashboard");
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             setExtendedState(JFrame.MAXIMIZED_BOTH);
             setLayout(new BorderLayout());
