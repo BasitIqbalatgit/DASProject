@@ -1,4 +1,4 @@
-package linklist.node;
+package dsa.linklist;
 
 import model.Message;
 import model.MessageType;
@@ -114,6 +114,18 @@ public class LinkedList<T> {
             System.out.println();
         }
     }
+    
+    public Node<T> find(T key) {
+        Node<T> temp = head;
+        while (temp != null) {
+            if (temp.data.equals(key)) {
+                return temp;
+            }
+            temp = temp.next;
+        }
+        return null;
+    }
+    
     public String getErrorMessages() {
         StringBuilder sb = new StringBuilder();
         if (isEmpty()) {
@@ -146,15 +158,5 @@ public class LinkedList<T> {
         return false;
 }
 
-    public Node<T> find(T key) {
-        Node<T> temp = head;
-        while (temp != null) {
-            if (temp.data.equals(key)) {
-                return temp;
-            }
-            temp = temp.next;
-        }
-        return null;
-    }
 
 }

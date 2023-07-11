@@ -70,9 +70,6 @@ public class AdminDashboard extends JFrame {
         JButton viewStudentsButton = createMenuButton("View Students");
         JButton viewCoursesButton = createMenuButton("View Courses");
         
-        
-     
-
         menuPanel.add(enrollStudentsButton, gbc);
         gbc.gridy++;
         menuPanel.add(viewStudentsButton, gbc);

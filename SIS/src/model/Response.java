@@ -1,8 +1,8 @@
 
 package model;
 
-import linklist.node.Node;
-import linklist.node.LinkedList;
+import dsa.linklist.Node;
+import dsa.linklist.LinkedList;
 
 /**
  *
