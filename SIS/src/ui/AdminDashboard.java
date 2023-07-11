@@ -6,7 +6,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import ui.panels.AddDetails;
-
+import controller.SISController;
 
 
 public class AdminDashboard extends JFrame {
@@ -40,7 +40,7 @@ public class AdminDashboard extends JFrame {
 
     private void createHeaderPanel() {
         headerPanel = new JPanel();
-        headerPanel.setBackground(new Color(41, 128, 185));
+        headerPanel.setBackground(new Color(22, 160, 133));
         headerPanel.setLayout(new BorderLayout());
         headerPanel.setPreferredSize(new Dimension(800, 75));
         add(headerPanel, BorderLayout.NORTH);
@@ -56,7 +56,7 @@ public class AdminDashboard extends JFrame {
     
     private void createMenuPanel() {
         menuPanel = new JPanel();
-        menuPanel.setBackground(new Color(52, 152, 219));
+        menuPanel.setBackground(new Color(0, 204, 153));
         menuPanel.setPreferredSize(new Dimension(220, 600));
         menuPanel.setLayout(new GridBagLayout());
         add(menuPanel, BorderLayout.WEST);
@@ -79,12 +79,12 @@ public class AdminDashboard extends JFrame {
         
         JButton logoutButton = new JButton("Logout");
         logoutButton.setForeground(Color.WHITE);
-        logoutButton.setBackground(new Color(41, 128, 185));
+        logoutButton.setBackground(new Color(22, 160, 133));
         logoutButton.setFocusPainted(false);
         logoutButton.setFont(new Font("Arial", Font.BOLD, 12));
         logoutButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         logoutButton.putClientProperty("JButton.buttonType", "roundRect"); // Use roundRect button type
-        logoutButton.putClientProperty("JButton.selectedBackground", new Color(52, 152, 219));
+        logoutButton.putClientProperty("JButton.selectedBackground", new Color(255, 255, 255));
 
         // Add ActionListener to handle logout functionality
         logoutButton.addActionListener(new ActionListener() {
@@ -102,7 +102,7 @@ public class AdminDashboard extends JFrame {
         JButton button = new JButton(text);
         button.setPreferredSize(new Dimension(200, 35));
         button.setForeground(Color.WHITE);
-        button.setBackground(new Color(41, 128, 185));
+        button.setBackground(new Color(22, 160, 133));
         button.setFocusPainted(false);
         button.setFont(new Font("Arial", Font.BOLD, 14));
         button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -124,7 +124,7 @@ public class AdminDashboard extends JFrame {
                 if (buttonText.equals("Enroll Students")) {
                     contentPanel.add(new AddDetails());
                 } else if (buttonText.equals("View Students")) {
-                    
+                    contentPanel.add(SISController.getStudentListPanel());
 
                 } else if (buttonText.equals("View Courses")) {
                    
