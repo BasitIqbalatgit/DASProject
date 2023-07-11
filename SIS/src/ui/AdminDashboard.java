@@ -9,14 +9,14 @@ import ui.panels.AddDetails;
 
 
 
-public class Dashboard extends JFrame {
+public class AdminDashboard extends JFrame {
 
     private JPanel headerPanel;
     private JPanel menuPanel;
     private JPanel contentPanel;
 
 
-    public Dashboard() {
+    public AdminDashboard() {
        
 
             setTitle("Attendance Management System - Dashboard");
@@ -93,7 +93,8 @@ public class Dashboard extends JFrame {
         logoutButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                
+                dispose();
+                new LoginUI().setVisible(true);
             }
         });
 
@@ -138,9 +139,6 @@ public class Dashboard extends JFrame {
             }
         });
         return button;
-    }
-    public static void main(String[] args) {
-        new Dashboard().setVisible(true);
     }
     private void createContentPanel() {
         contentPanel = new AddDetails();

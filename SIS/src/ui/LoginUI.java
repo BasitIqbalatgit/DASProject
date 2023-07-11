@@ -1,10 +1,15 @@
 package ui;
 
-import ui.Dashboard;
+import controller.SISController;
+import ui.AdminDashboard;
 import javax.swing.*;
 
 import java.awt.*;
 import java.awt.event.*;
+import model.Message;
+import model.MessageType;
+import model.Response;
+import model.UserDTO;
 
 
 
@@ -12,9 +17,10 @@ public class LoginUI extends JFrame {
 
     private JTextField usernameField;
     private JPasswordField passwordField;
+    public SISController sisController;
 
     public LoginUI() {
-        
+        sisController=new SISController();
         setTitle("UAS - Login");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setPreferredSize(new Dimension(600, 400));
@@ -98,27 +104,25 @@ public class LoginUI extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 String username = usernameField.getText();
                 String password = new String(passwordField.getPassword());
-                
-                
-                if (username.equals("fawad")&&password.equals("root")) {
-                    switch ("faculty") {
-                        case "admin":
-                            dispose();
-                            JOptionPane.showMessageDialog(null, "Welcome to Admin");
-                            break;
+                Response res=new Response();
+                UserDTO user=new UserDTO(username,password);
+               sisController.verifyUser(user, res);
+                if (res.isSuccessfull()) {
+                    switch(user.getRole()){
                         case "faculty":
+                            new AdminDashboard().setVisible(true);
                             dispose();
-                            new Dashboard().setVisible(true);
                             break;
                         case "student":
+                            new StudentDashBoard().setVisible(true);
                             dispose();
-                            
-                            break;
+                            break;  
                     }
-
                 } else {
-                    JOptionPane.showMessageDialog(rootPane,  "Error Message");
+                    JOptionPane.showMessageDialog(rootPane,  res.messagesList.getErrorMessages());
                 }
+                
+                
             }
         });
 
