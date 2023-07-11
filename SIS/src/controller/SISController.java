@@ -5,7 +5,9 @@
 package controller;
 
 import common.Student;
+import java.io.File;
 import java.util.ArrayList;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -35,12 +37,19 @@ public class SISController {
     public static JScrollPane getStudentListPanel()  {
         ArrayList<Student> list ;
         try{
-            list= StudentInformation.getStudents("/home/fawad/Desktop/students.xlsx");
+            String relativePath = "../data/students.xlsx";
+
+File file = new File(relativePath);
+String absolutePath = file.getAbsolutePath();
+
+            
+            list= StudentInformation.getStudents(absolutePath);
         }catch(Exception e){
+            System.out.println(e.getMessage());
             list=null;
         }
-
-        // Create a DefaultTableModel to hold the data for the JTable
+//        if(!(list==null)){
+            // Create a DefaultTableModel to hold the data for the JTable
         DefaultTableModel model = new DefaultTableModel();
 
         // Add columns to the model
@@ -76,6 +85,8 @@ public class SISController {
 
         // Return Jpanel
         return scrollPane;
-
+//        }
+//        
+//        return new JScrollPane();
     }
 }
