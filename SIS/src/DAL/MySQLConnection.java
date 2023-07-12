@@ -5,10 +5,7 @@
 package DAL;
 import java.sql.DriverManager;
 import java.sql.Connection;
-/**
- *
- * @author CUI
- */
+
 public class MySQLConnection implements IConnection{
     public static String URL;
     public static String USERNAME;
