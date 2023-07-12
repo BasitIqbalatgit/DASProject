@@ -2,6 +2,7 @@ package model;
 
 
 import common.Student;
+import dsa.linklist.LinkedList;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.io.File;
@@ -12,11 +13,11 @@ import java.util.ArrayList;
 public class StudentInformation {
 
   
-    public static ArrayList<Student> getStudents(String excelFilePath) throws IOException {
+    public static LinkedList<Student> getStudents(String excelFilePath) throws IOException {
         FileInputStream fileInputStream = new FileInputStream(new File(excelFilePath));
         Workbook workbook = new XSSFWorkbook(fileInputStream);
         Sheet sheet = workbook.getSheetAt(1);
-        ArrayList<Student> studentList = new ArrayList<>();
+        LinkedList<Student> studentList = new LinkedList<>();
 
         for (int rowIndex = 1; rowIndex <= 1044; rowIndex++) {
             Row row = sheet.getRow(rowIndex);

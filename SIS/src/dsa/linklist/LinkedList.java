@@ -5,7 +5,7 @@ import model.MessageType;
 
 public class LinkedList<T> {
 
-    private Node<T> head;
+    public Node<T> head;
     private int size;
 
     public LinkedList() {

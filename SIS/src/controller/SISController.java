@@ -14,6 +14,8 @@ import javax.swing.table.DefaultTableModel;
 import model.Response;
 import model.StudentInformation;
 import common.UserDTO;
+import dsa.linklist.LinkedList;
+import dsa.linklist.Node;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -43,7 +45,7 @@ public class SISController {
         dalManager.saveUser(user, res);
     }
     public static JScrollPane getStudentListPanel() {
-        ArrayList<Student> list;
+        LinkedList<Student> list;
         try {
             String relativePath = "../data/students.xlsx";
 
@@ -69,7 +71,10 @@ public class SISController {
         model.addColumn("Group");
 
         // Add rows to the model using the data from the ArrayList
-        for (Student student : list) {
+         if (list != null) {
+        Node<Student> node = list.head;
+        while (node != null) {
+            Student student = node.getData();
             model.addRow(new Object[]{
                 student.getRegNo(),
                 student.getProg(),
@@ -79,7 +84,9 @@ public class SISController {
                 student.getStatus(),
                 student.getGroup()
             });
+            node = node.next;
         }
+    }
 
         // Create a JTable with the created model
         JTable table = new JTable(model);
