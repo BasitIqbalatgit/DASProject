@@ -38,8 +38,8 @@ public class SISController {
             res.messagesList.addAtEnd(new Message("Invalid credentials.", MessageType.Error));
         }
     }
-    public static void saveUser(UserDTO user,Response res){
-        
+    public void saveUser(UserDTO user,Response res){
+        dalManager.saveUser(user, res);
     }
     public static JScrollPane getStudentListPanel() {
         ArrayList<Student> list;

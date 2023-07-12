@@ -11,7 +11,7 @@ public class DALManager {
     IConnection objConnection;
     RecordsAdder objAdder;
 
-    DALManager() {
+    public DALManager() {
         objConnection = new MySQLConnection("jdbc:mysql://localhost:3306/universitytimetable", "root", "BasitIqbal@050");
         objAdder = new RecordsAdder();
     }

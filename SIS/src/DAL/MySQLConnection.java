@@ -3,10 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package DAL;
-<<<<<<< Updated upstream
-=======
-import common.UserDTO;
->>>>>>> Stashed changes
 import java.sql.DriverManager;
 import java.sql.Connection;
 
