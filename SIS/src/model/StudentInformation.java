@@ -11,13 +11,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class StudentInformation {
-<<<<<<< Updated upstream
+
 
   
     public static LinkedList<Student> getStudents(String excelFilePath) throws IOException {
-=======
-    public static ArrayList<Student> getStudents(String excelFilePath) throws IOException {
->>>>>>> Stashed changes
+
         FileInputStream fileInputStream = new FileInputStream(new File(excelFilePath));
         Workbook workbook = new XSSFWorkbook(fileInputStream);
         Sheet sheet = workbook.getSheetAt(1);

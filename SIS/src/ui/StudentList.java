@@ -11,6 +11,8 @@ package ui;
  * @author fawad
  */
 import common.Student;
+import dsa.linklist.LinkedList;
+import dsa.linklist.Node;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -63,7 +65,7 @@ public class StudentList extends JPanel {
         model.addColumn("Nationality");
         model.addColumn("Status");
         model.addColumn("Group");
-        ArrayList<Student> list;
+        LinkedList<Node> list;
         list=StudentInformation.getStudents(absolutePath);
         // Add rows to the model using the data from the ArrayList
         for (Student student : list) {
