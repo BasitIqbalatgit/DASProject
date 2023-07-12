@@ -145,6 +145,25 @@ public class LinkedList<T> {
 
         return sb.toString();
     }
+    public String getInfoMessages() {
+        StringBuilder sb = new StringBuilder();
+        if (isEmpty()) {
+            System.out.println("List is Empty.");
+        } else {
+            Node<Message> n = (Node<Message>) head;
+            while (n != null) {
+                if (sb.length() > 0) {
+                    sb.append(",\n");
+                }
+                if (n.getData().Type == MessageType.Information ) {
+                    sb.append(n.getData().Message);
+                }
+                n = n.next;
+            }
+        }
+
+        return sb.toString();
+    }
 
     public boolean hasError() {
         if (isEmpty()) {
