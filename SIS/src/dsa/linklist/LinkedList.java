@@ -1,5 +1,6 @@
 package dsa.linklist;
 
+import common.Student;
 import model.Message;
 import model.MessageType;
 
@@ -46,18 +47,6 @@ public class LinkedList<T> {
             p.next = n;
             size++;
         }
-    }
-
-    public void addAfter(T key, T value) {
-        Node<T> n = new Node<>(value);
-        Node<T> p = find(key);
-        if (p == null) {
-            System.out.println("Node with key " + key + " not found");
-            return;
-        }
-        n.next = p.next;
-        p.next = n;
-        size++;
     }
 
     public void delete(T key) {
@@ -115,11 +104,11 @@ public class LinkedList<T> {
         }
     }
 
-    public Node<T> find(T key) {
-        Node<T> temp = head;
+    public Student find(String key) {
+        Node<Student> temp = (Node<Student>) head;
         while (temp != null) {
-            if (temp.data.equals(key)) {
-                return temp;
+            if (temp.data.getRegNo().equals(key)) {
+                return temp.data;
             }
             temp = temp.next;
         }
