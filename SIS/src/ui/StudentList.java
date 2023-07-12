@@ -85,17 +85,17 @@ public class StudentList extends JPanel {
         }
         table = new JTable(model);
         JScrollPane scrollPane = new JScrollPane(table);
-        add(scrollPane, BorderLayout.CENTER);
-
+        add(scrollPane,BorderLayout.CENTER);
     }
 
     private void searchTable(String searchText,LinkedList<Student> list) {
         if (searchText.isEmpty()) {
+            
+            
+            
             return; // Don't perform search if the search text is empty
         }
-
         String searchLowercase = searchText.toLowerCase();
-
         boolean found = false;
 
         Student s=list.find(searchText);

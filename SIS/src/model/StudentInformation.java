@@ -24,9 +24,7 @@ public class StudentInformation {
         for (int rowIndex = 1; rowIndex <= 1044; rowIndex++) {
             Row row = sheet.getRow(rowIndex);
             
-            
             Student student = new Student();
-            //student.setSrNo(""+row.getCell(0).getNumericCellValue());
             student.setRegNo(row.getCell(1).getStringCellValue());
             student.setProg(row.getCell(2).getStringCellValue());
             student.setName(row.getCell(3).getStringCellValue());
@@ -34,9 +32,7 @@ public class StudentInformation {
             student.setNationality(row.getCell(8).getStringCellValue());
             student.setStatus(row.getCell(9).getStringCellValue());
             student.setGroup(row.getCell(10).getStringCellValue());
-
             studentList.add(student);
-            System.out.println(student.toString());
         }
 
         workbook.close();
