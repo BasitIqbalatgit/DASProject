@@ -18,7 +18,7 @@ public class StudentInformation {
         Sheet sheet = workbook.getSheetAt(1);
         ArrayList<Student> studentList = new ArrayList<>();
 
-        for (int rowIndex = 472; rowIndex <= 672; rowIndex++) {
+        for (int rowIndex = 0; rowIndex <= 1044; rowIndex++) {
             Row row = sheet.getRow(rowIndex);
             
             Student student = new Student();
