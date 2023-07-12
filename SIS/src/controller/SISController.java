@@ -16,7 +16,7 @@ import model.Message;
 import model.MessageType;
 import model.Response;
 import model.StudentInformation;
-import model.UserDTO;
+import common.UserDTO;
 
 /**
  *

@@ -1,15 +1,7 @@
 package common;
 
 public class Student {
-    private String srNo;
-
-    public String getSrNo() {
-        return srNo;
-    }
-
-    public void setSrNo(String srNo) {
-        this.srNo = srNo;
-    }
+   
     private String regNo;
     private String prog;
     private String name;
