@@ -65,7 +65,7 @@ public class LoginUI extends JFrame {
             }
         });
         mainPanel.add(usernameField, gbc);
-
+        
         gbc.gridy++;
         passwordField = new JPasswordField(20);
         passwordField.setText("root");
