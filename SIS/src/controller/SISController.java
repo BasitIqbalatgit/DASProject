@@ -28,7 +28,7 @@ public class SISController {
         if (user.getUsername().equals("fawad") && user.getPassword().equals("root")) {
             user.setRole("faculty");
         } else if (user.getUsername().equals("basit") && user.getPassword().equals("root")) {
-            user.setRole("faculty");
+            user.setRole("student");
         } else {
             res.messagesList.addAtEnd(new Message("Invalid credentials.", MessageType.Error));
         }
