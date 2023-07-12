@@ -33,7 +33,7 @@ public class LinkedList<T> {
         }
     }
 
-    public void addAtEnd(T value) {
+    public void add(T value) {
         Node<T> n = new Node<>(value);
         if (isEmpty()) {
             head = n;
@@ -166,18 +166,15 @@ public class LinkedList<T> {
     }
 
     public boolean hasError() {
-        if (isEmpty()) {
-            return false;
-        } else {
-            Node<Message> n = (Node<Message>) head;
-            while (n != null) {
-                if (n.data.Type == MessageType.Error || n.data.Type == MessageType.Exception) {
-                    return true;
-                }
-            }
-
+    Node<Message> n = (Node<Message>) head;
+    while (n != null) {
+        if (n.getData().Type == MessageType.Error || n.getData().Type == MessageType.Exception) {
+            return true;
         }
-        return false;
+        n = n.next;
     }
+    return false;
+}
+
 
 }
