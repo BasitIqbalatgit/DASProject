@@ -7,6 +7,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import ui.panels.AddDetails;
 import controller.SISController;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import ui.panels.EnrollStudents;
 
 
@@ -127,7 +130,11 @@ public class AdminDashboard extends JFrame {
                 if (buttonText.equals("Enroll Students")) {
                     contentPanel.add(new EnrollStudents());
                 } else if (buttonText.equals("View Students")) {
-                    contentPanel.add(SISController.getStudentListPanel());
+                    try {
+                        contentPanel.add(new StudentList());
+                    } catch (IOException ex) {
+                        //Logger.getLogger(AdminDashboard.class.getName()).log(Level.SEVERE, null, ex);
+                    }
 
                 } else if (buttonText.equals("View Courses")) {
                    

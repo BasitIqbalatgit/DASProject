@@ -10,37 +10,33 @@ package ui;
  *
  * @author fawad
  */
-import org.apache.poi.ss.usermodel.*;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import common.Student;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import static org.apache.poi.ss.usermodel.CellType.NUMERIC;
-import static org.apache.poi.ss.usermodel.CellType.STRING;
+import java.util.ArrayList;
+import model.StudentInformation;
 
 public class StudentList extends JPanel {
     private JPanel studentList;
     private DefaultTableModel tableModel;
-    private JTable table;
+    private final JTable table;
     private JTextField searchField;
 
-    public StudentList() {
+    public StudentList() throws IOException {
 
         setLayout(new BorderLayout());
 
         // Create the table model
-        String[] columnNames = {"Sr.#", "Reg#", "Prog", "Name", "Father Name", "Contact#", "IDCard#", "Date of Birth",
-                "Nationality", "Status", "Group", "Marks", "Obt"};
+        String[] columnNames = {"Reg#", "Prog", "Name", "Father Name", 
+                "Nationality", "Status", "Group", };
         tableModel = new DefaultTableModel(columnNames, 0);
 
         // Create the table
-        table = new JTable(tableModel);
-        JScrollPane scrollPane = new JScrollPane(table);
-        add(scrollPane, BorderLayout.CENTER);
+        
 
         // Create the search panel
         JPanel searchPanel = new JPanel();
@@ -56,51 +52,41 @@ public class StudentList extends JPanel {
 
             File file = new File(relativePath);
             String absolutePath = file.getAbsolutePath();
-        try {
-            populateTableFromExcel(absolutePath);
-        } catch (IOException e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Error reading Excel file: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            
+         DefaultTableModel model = new DefaultTableModel();
+
+        // Add columns to the model
+        model.addColumn("Registration Number");
+        model.addColumn("Program");
+        model.addColumn("Name");
+        model.addColumn("Father's Name");
+        model.addColumn("Nationality");
+        model.addColumn("Status");
+        model.addColumn("Group");
+        ArrayList<Student> list;
+        list=StudentInformation.getStudents(absolutePath);
+        // Add rows to the model using the data from the ArrayList
+        for (Student student : list) {
+            System.out.print(student.getRegNo());
+            model.addRow(new Object[]{
+                student.getRegNo(),
+                student.getProg(),
+                student.getName(),
+                student.getFatherName(),
+                student.getNationality(),
+                student.getStatus(),
+                student.getGroup()
+                   
+            });
         }
+        table = new JTable(model);
+        JScrollPane scrollPane = new JScrollPane(table);
+        add(scrollPane, BorderLayout.CENTER);
 
        
     }
 
-    private void populateTableFromExcel(String excelFilePath) throws IOException {
-        FileInputStream fileInputStream = new FileInputStream(new File(excelFilePath));
-        Workbook workbook = new XSSFWorkbook(fileInputStream);
-        Sheet sheet = workbook.getSheetAt(1);
-
-        for (Row row : sheet) {
-            Object[] rowData = new Object[row.getLastCellNum()];
-            for (int i = 0; i < row.getLastCellNum(); i++) {
-                Cell cell = row.getCell(i);
-                if (cell != null) {
-                    switch (cell.getCellTypeEnum()) {
-                        case NUMERIC:
-                            if (DateUtil.isCellDateFormatted(cell)) {
-                                rowData[i] = cell.getDateCellValue();
-                            } else {
-                                rowData[i] = cell.getNumericCellValue();
-                            }
-                            break;
-                        case STRING:
-                            rowData[i] = cell.getStringCellValue();
-                            break;
-                        default:
-                            rowData[i] = "";
-                            break;
-                    }
-                } else {
-                    rowData[i] = "";
-                }
-            }
-            tableModel.addRow(rowData);
-        }
-
-        workbook.close();
-        fileInputStream.close();
-    }
+    
 
     private void searchTable(String searchText) {
         if (searchText.isEmpty()) {

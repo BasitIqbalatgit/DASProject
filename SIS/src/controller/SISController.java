@@ -19,6 +19,7 @@ import dsa.linklist.Node;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import javax.swing.JOptionPane;
 //import java.lang.System.Logger;
 //import java.lang.System.Logger.Level;
 import org.apache.poi.EncryptedDocumentException;
@@ -100,6 +101,29 @@ public class SISController {
 //        }
 //        
 //        return new JScrollPane();
+    }
+    public static void searchTable(JTable table,String searchText) {
+        if (searchText.isEmpty()) {
+            return; // Don't perform search if the search text is empty
+        }
+
+        String searchLowercase = searchText.toLowerCase();
+
+        boolean found = false;
+
+        for (int row = 0; row < table.getRowCount(); row++) {
+            String regNo = String.valueOf(table.getValueAt(row, 1)).toLowerCase(); // Assuming Reg# is at index 1
+            if (regNo.contains(searchLowercase)) {
+                table.setRowSelectionInterval(row, row);
+                table.scrollRectToVisible(table.getCellRect(row, 0, true));
+                found = true;
+                break;
+            }
+        }
+       
+        if (!found) {
+            JOptionPane.showMessageDialog(null, "No results found for: " + searchText, "Search Result", JOptionPane.INFORMATION_MESSAGE);
+        }
     }
   public static void writeStudentToExcel(Student student) {
       String relativePath = "../data/students.xlsx";
