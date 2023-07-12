@@ -8,13 +8,9 @@ import DAL.DALManager;
 import common.Student;
 import java.io.File;
 import java.util.ArrayList;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import model.Message;
-import model.MessageType;
 import model.Response;
 import model.StudentInformation;
 import common.UserDTO;
@@ -29,13 +25,7 @@ public class SISController {
         dalManager=new DALManager();
     }
     public void verifyUser(UserDTO user, Response res) {
-        if (user.getUsername().equals("fawad") && user.getPassword().equals("root")) {
-            user.setRole("faculty");
-        } else if (user.getUsername().equals("basit") && user.getPassword().equals("root")) {
-            user.setRole("student");
-        } else {
-            res.messagesList.add(new Message("Invalid credentials.", MessageType.Error));
-        }
+        dalManager.verifyUser(user,res);
     }
     public void saveUser(UserDTO user,Response res){
         dalManager.saveUser(user, res);

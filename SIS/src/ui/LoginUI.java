@@ -13,7 +13,7 @@ import common.UserDTO;
 
 public class LoginUI extends JFrame {
 
-    private JTextField usernameField;
+    private JTextField emailField;
     private JPasswordField passwordField;
     public SISController sisController;
 
@@ -43,8 +43,8 @@ public class LoginUI extends JFrame {
         mainPanel.add(titleLabel, gbc);
 
         gbc.gridy++;
-        JLabel usernameLabel = new JLabel("Username:");
-        mainPanel.add(usernameLabel, gbc);
+        JLabel emailLabel = new JLabel("Email:");
+        mainPanel.add(emailLabel, gbc);
 
         gbc.gridy++;
         JLabel passwordLabel = new JLabel("Password:");
@@ -53,19 +53,19 @@ public class LoginUI extends JFrame {
         gbc.gridx++;
         gbc.gridy = 1;
         gbc.fill = GridBagConstraints.HORIZONTAL;
-        usernameField = new JTextField(20);
-        usernameField.setText("basit");
-        usernameField.addKeyListener(new KeyAdapter() {
+        emailField = new JTextField(20);
+        emailField.setText("basit");
+        emailField.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    if (!usernameField.getText().isEmpty()) {
+                    if (!emailField.getText().isEmpty()) {
                         passwordField.requestFocusInWindow();
                     }
                 }
             }
         });
-        mainPanel.add(usernameField, gbc);
+        mainPanel.add(emailField, gbc);
         
         gbc.gridy++;
         passwordField = new JPasswordField(20);
@@ -100,10 +100,10 @@ public class LoginUI extends JFrame {
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String username = usernameField.getText();
+                String email = emailField.getText();
                 String password = new String(passwordField.getPassword());
                 Response res=new Response();
-                UserDTO user=new UserDTO(username,password);
+                UserDTO user=new UserDTO(email,password);
                sisController.verifyUser(user, res);
                 if (res.isSuccessfull()) {
                     switch(user.getRole()){
