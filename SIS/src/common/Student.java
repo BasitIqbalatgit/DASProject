@@ -9,6 +9,33 @@ public class Student {
     private String nationality;
     private String status;
     private String group;
+    private String cnic;
+    private double fscMarks;
+    private double sscMarks;
+
+    public double getFscMarks() {
+        return fscMarks;
+    }
+
+    public void setFscMarks(double fscMarks) {
+        this.fscMarks = fscMarks;
+    }
+
+    public double getSscMarks() {
+        return sscMarks;
+    }
+
+    public void setSscMarks(double sscMarks) {
+        this.sscMarks = sscMarks;
+    }
+
+    public String getCnic() {
+        return cnic;
+    }
+
+    public void setCnic(String cnic) {
+        this.cnic = cnic;
+    }
 
     public String getRegNo() {
         return regNo;
