@@ -66,7 +66,7 @@ public class StudentList extends JPanel {
     private void populateTableFromExcel(String excelFilePath) throws IOException {
         FileInputStream fileInputStream = new FileInputStream(new File(excelFilePath));
         Workbook workbook = new XSSFWorkbook(fileInputStream);
-        Sheet sheet = workbook.getSheetAt(3);
+        Sheet sheet = workbook.getSheetAt(1);
 
         for (Row row : sheet) {
             Object[] rowData = new Object[row.getLastCellNum()];
