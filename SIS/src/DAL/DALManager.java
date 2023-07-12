@@ -20,9 +20,9 @@ public class DALManager {
 
     public DALManager() {
 //<<<<<<< Updated upstream
-        objConnection = new MySQLConnection("jdbc:mysql://localhost:3306/mydb", "root", "BasitIqbal@050");
+//        objConnection = new MySQLConnection("jdbc:mysql://localhost:3306/mydb", "root", "BasitIqbal@050");
 //=======
-//        objConnection = new MySQLConnection("jdbc:mysql://localhost:3306/mydb", "root", "Admin123$");
+        objConnection = new MySQLConnection("jdbc:mysql://localhost:3306/mydb", "root", "Admin123$");
 //>>>>>>> Stashed changes
         objAdder = new RecordsAdder();
         objMapper = new RecordsMapper();

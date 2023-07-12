@@ -124,7 +124,7 @@ public class AdminDashboard extends JFrame {
                 if (buttonText.equals("Enroll Students")) {
                     contentPanel.add(new AddDetails());
                 } else if (buttonText.equals("View Students")) {
-                    contentPanel.add(SISController.getStudentListPanel());
+                    contentPanel.add(new StudentList());
 
                 } else if (buttonText.equals("View Courses")) {
                    
