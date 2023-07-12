@@ -34,22 +34,21 @@ public class SISController {
         }
     }
 
-    public static JScrollPane getStudentListPanel()  {
-        ArrayList<Student> list ;
-        try{
+    public static JScrollPane getStudentListPanel() {
+        ArrayList<Student> list;
+        try {
             String relativePath = "../data/students.xlsx";
 
-File file = new File(relativePath);
-String absolutePath = file.getAbsolutePath();
+            File file = new File(relativePath);
+            String absolutePath = file.getAbsolutePath();
 
-            
-            list= StudentInformation.getStudents(absolutePath);
-        }catch(Exception e){
+            list = StudentInformation.getStudents(absolutePath);
+        } catch (Exception e) {
             System.out.println(e.getMessage());
-            list=null;
+            list = null;
         }
 //        if(!(list==null)){
-            // Create a DefaultTableModel to hold the data for the JTable
+        // Create a DefaultTableModel to hold the data for the JTable
         DefaultTableModel model = new DefaultTableModel();
 
         // Add columns to the model
@@ -81,8 +80,6 @@ String absolutePath = file.getAbsolutePath();
         JScrollPane scrollPane = new JScrollPane(table);
 
         // Add the JScrollPane to the JFrame
-        
-
         // Return Jpanel
         return scrollPane;
 //        }
