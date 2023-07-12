@@ -17,8 +17,8 @@ import common.UserDTO;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Row;
@@ -110,7 +110,7 @@ public class SISController {
                 try {
                     workbook = WorkbookFactory.create(fis);
                 } catch (InvalidFormatException ex) {
-                    Logger.getLogger(SISController.class.getName()).log(Level.SEVERE, null, ex);
+//                    Logger.getLogger(SISController.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 sheet = workbook.getSheet("Sheet3");
                 int lastRowNum = sheet.getLastRowNum();
