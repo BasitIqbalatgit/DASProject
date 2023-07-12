@@ -4,6 +4,7 @@
  */
 package controller;
 
+import DAL.DALManager;
 import common.Student;
 import java.io.File;
 import java.util.ArrayList;
@@ -23,6 +24,10 @@ import common.UserDTO;
  * @author fawad
  */
 public class SISController {
+    DALManager dalManager;
+    public SISController(){
+        dalManager=new DALManager();
+    }
 
     public void verifyUser(UserDTO user, Response res) {
         if (user.getUsername().equals("fawad") && user.getPassword().equals("root")) {
@@ -33,7 +38,9 @@ public class SISController {
             res.messagesList.addAtEnd(new Message("Invalid credentials.", MessageType.Error));
         }
     }
-
+    public static void saveUser(UserDTO user,Response res){
+        
+    }
     public static JScrollPane getStudentListPanel() {
         ArrayList<Student> list;
         try {
