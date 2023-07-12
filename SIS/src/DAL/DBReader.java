@@ -36,11 +36,11 @@ public class DBReader {
      ResultSet getUserResultFromQuery(String query, Connection conn, UserDTO user, Response objResponse) {
     try {
         PreparedStatement statement = conn.prepareStatement(query);
-        statement.setString(2, user.getEmail());
-        statement.setString(3, user.getPassword());
-        System.out.println("Executing query in DBReader: " + statement.toString()); // Debug statement
+            statement.setString(1, user.getEmail());
+            statement.setString(2, user.getPassword());
+//        System.out.println("Executing query in DBReader: " + statement.toString()); // Debug statement
         return statement.executeQuery();
-    } catch (SQLException e) {        
+    } catch (Exception e) {        
         System.out.println("i am in db readexceptinerer");
         objResponse.messagesList.add(new Message("unable to read "+e.getMessage(),MessageType.Error));
         

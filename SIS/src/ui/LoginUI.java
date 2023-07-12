@@ -54,7 +54,7 @@ public class LoginUI extends JFrame {
         gbc.gridy = 1;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         emailField = new JTextField(20);
-        emailField.setText("basit");
+        emailField.setText("basit.sardar.comsian@gmail.com");
         emailField.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
@@ -69,7 +69,7 @@ public class LoginUI extends JFrame {
         
         gbc.gridy++;
         passwordField = new JPasswordField(20);
-        passwordField.setText("root");
+        passwordField.setText("123");
         JButton loginButton = new JButton("Login");
         loginButton.setForeground(Color.WHITE);
         loginButton.setBackground(new Color(41, 128, 185));

@@ -42,20 +42,20 @@ public class RecordsMapper {
     
     
     
-     UserDTO getUser(ResultSet rs, Response objResponse) {
-    UserDTO user = new UserDTO();
+     void getUser(ResultSet rs, Response objResponse, UserDTO user) {
+    
     try {
         if (rs.next()) {
-            user.setUsername(rs.getString("username"));
-            user.setPassword(rs.getString("password"));
-            user.setRole(rs.getString("type"));
+            user.setUsername(rs.getString(1));
+            user.setEmail(rs.getString(2));
+            user.setPassword(rs.getString(3));
+            user.setRole(rs.getString(4));
         }
     } catch (SQLException e) {
         objResponse.messagesList.add(new Message("unable to MAP "+e.getMessage(),MessageType.Error));
         
         e.printStackTrace();
     }
-    return user;
 }
     
 }
