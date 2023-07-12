@@ -16,9 +16,7 @@ public class RegistrationUI extends JFrame {
     private JPasswordField passwordField;
     SISController sisController;
 
-    public static void main(String[] args) {
-        new RegistrationUI().setVisible(true);
-    }
+    
 
     public RegistrationUI() {
         sisController = new SISController();

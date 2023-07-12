@@ -1,5 +1,6 @@
 package ui;
 
+import com.formdev.flatlaf.FlatIntelliJLaf;
 import controller.SISController;
 import javax.swing.*;
 
@@ -122,8 +123,34 @@ public class LoginUI extends JFrame {
                 
             }
         });
+        
+        JLabel registerLabel = new JLabel("Not registered? Click here to register.");
+        registerLabel.setForeground(Color.BLUE);
+        registerLabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        gbc.gridy++;
+        gbc.anchor = GridBagConstraints.LINE_START;
+        gbc.insets = new Insets(10, 10, 0, 0);
+        mainPanel.add(registerLabel, gbc);
+
+        registerLabel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                RegistrationUI registrationUI = new RegistrationUI();
+                registrationUI.setVisible(true);
+                dispose();
+            }
+        });
 
         pack();
         setLocationRelativeTo(null);
+    }
+    
+    public static void main(String[] args) {
+        try {
+            UIManager.setLookAndFeel(new FlatIntelliJLaf());
+        } catch (Exception ex) {
+            System.err.println("Failed to initialize FlatLaf: " + ex.getMessage());
+        }
+        new LoginUI().setVisible(true);
     }
 }
