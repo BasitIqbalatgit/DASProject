@@ -3,14 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package DAL;
-import common.utils.UserDTO;
 import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 /**
  *
  * @author CUI
@@ -25,6 +19,7 @@ public class MySQLConnection implements IConnection{
         this.PASSWORD=password;
         
     }
+    
     @Override
     public  Connection getConnection() {
         try {
