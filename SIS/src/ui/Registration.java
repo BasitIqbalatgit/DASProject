@@ -200,9 +200,9 @@ public class Registration extends javax.swing.JFrame {
         Response res=new Response();
         sisController.saveUser(user,res);
         if(res.isSuccessfull()){
-            JOptionPane.showMessageDialog( null, res.messagesList.getInfoMessages());
+            JOptionPane.showMessageDialog( null, res.getInfoMessages());
         } else{
-            JOptionPane.showMessageDialog(null, res.messagesList.getErrorMessages());
+            JOptionPane.showMessageDialog(null, res.getErrorMessages());
         }
     }//GEN-LAST:event_registerActionPerformed
 

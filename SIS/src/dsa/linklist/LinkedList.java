@@ -137,7 +137,7 @@ public class LinkedList<T> {
                     sb.append(",\n");
                 }
                 if (n.getData().Type == MessageType.Error || n.getData().Type == MessageType.Exception) {
-                    sb.append(n.getData().Message);
+                    sb.append(n.data.Message);
                 }
                 n = n.next;
             }
@@ -156,7 +156,7 @@ public class LinkedList<T> {
                     sb.append(",\n");
                 }
                 if (n.getData().Type == MessageType.Information ) {
-                    sb.append(n.getData().Message);
+                    sb.append(n.data.Message);
                 }
                 n = n.next;
             }

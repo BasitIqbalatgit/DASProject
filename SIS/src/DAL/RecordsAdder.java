@@ -22,14 +22,14 @@ public class RecordsAdder {
             p.setString(4, objUser.getRole());
             int rowsInserted = p.executeUpdate();
             if (rowsInserted > 0) {
-                objResponse.messagesList.addAtEnd(new Message("User Saved successfully.", MessageType.Information));
+                objResponse.messagesList.add(new Message("User Saved successfully.", MessageType.Information));
             } else {
-                objResponse.messagesList.addAtEnd(new Message("Failed to add User.", MessageType.Error));
+                objResponse.messagesList.add(new Message("Failed to add User.", MessageType.Error));
             }
         } catch (SQLException e) {
             System.out.println("Error while saving slot.");
-            objResponse.messagesList.addAtEnd(new Message("Failed to create user. Please contact support for assistance.", MessageType.Error));
-            objResponse.messagesList.addAtEnd(new Message(e.getMessage(), MessageType.Exception));
+            objResponse.messagesList.add(new Message("Failed to create user. Please contact support for assistance.", MessageType.Error));
+            objResponse.messagesList.add(new Message(e.getMessage(), MessageType.Exception));
         }
     }
 }

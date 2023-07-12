@@ -14,7 +14,11 @@ public class RegistrationUI extends JFrame {
     private JTextField usernameField;
     private JTextField emailField;
     private JPasswordField passwordField;
-    public SISController sisController;
+    SISController sisController;
+
+    public static void main(String[] args) {
+        new RegistrationUI().setVisible(true);
+    }
 
     public RegistrationUI() {
         sisController = new SISController();
@@ -85,23 +89,16 @@ public class RegistrationUI extends JFrame {
         registerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String username = usernameField.getText();
-                String email = emailField.getText();
-                String password = new String(passwordField.getPassword());
-
-                // Perform registration logic here
-                // You can pass the registration details to your controller or service class
-                // Example:
-                UserDTO user = new UserDTO(username, email, password);
+                UserDTO user = new UserDTO(usernameField.getText(), emailField.getText(), new String(passwordField.getPassword()));
+                user.setRole("student");
                 Response res = new Response();
-//                sisController.registerUser(user, res);
-
+                sisController.saveUser(user, res);
                 if (res.isSuccessfull()) {
-                    // Registration success
-                    JOptionPane.showMessageDialog(rootPane, "Registration successful!");
+                    JOptionPane.showMessageDialog(null, res.getInfoMessages());
+                    new LoginUI().setVisible(true);
+                    dispose();
                 } else {
-                    // Registration failed
-                    JOptionPane.showMessageDialog(rootPane, res.messagesList.getErrorMessages());
+                    JOptionPane.showMessageDialog(null, res.getErrorMessages());
                 }
             }
         });
@@ -109,5 +106,5 @@ public class RegistrationUI extends JFrame {
         pack();
         setLocationRelativeTo(null);
     }
-    
+
 }

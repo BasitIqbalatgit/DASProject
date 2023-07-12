@@ -25,8 +25,8 @@ public class DALManager {
             Connection dbConnection = objConnection.getConnection();
             objAdder.saveUser(objUser, objResponse, dbConnection);
         } catch (Exception e) {
-            objResponse.messagesList.addAtEnd(new Message("Ooops! Failed to create Slots, Please contact support that there an issue while saving new Slots.", MessageType.Error));
-            objResponse.messagesList.addAtEnd(new Message(e.getMessage() + "\n Stack Track:\n" + e.getStackTrace(), MessageType.Exception));
+            objResponse.messagesList.add(new Message("Ooops! Failed to create Slots, Please contact support that there an issue while saving new Slots.", MessageType.Error));
+            objResponse.messagesList.add(new Message(e.getMessage() + "\n Stack Track:\n" + e.getStackTrace(), MessageType.Exception));
         }
     }
 }
