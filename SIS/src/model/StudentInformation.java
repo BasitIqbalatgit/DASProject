@@ -19,7 +19,8 @@ public class StudentInformation {
         ArrayList<Student> studentList = new ArrayList<>();
 
         for (int rowIndex = 1; rowIndex <= 1044; rowIndex++) {
-            Row row = sheet.getRow(rowIndex);
+            Row row = sheet.getRow(rowIndex+1);
+            
             
             Student student = new Student();
             //student.setSrNo(""+row.getCell(0).getNumericCellValue());

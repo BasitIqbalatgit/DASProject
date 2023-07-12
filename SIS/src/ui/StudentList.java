@@ -52,9 +52,12 @@ public class StudentList extends JPanel {
         add(searchPanel, BorderLayout.NORTH);
 
         // Populate the table with data from Excel
-        String excelFilePath = "/home/fawad/Desktop/students.xlsx";
+        String relativePath = "../data/students.xlsx";
+
+            File file = new File(relativePath);
+            String absolutePath = file.getAbsolutePath();
         try {
-            populateTableFromExcel(excelFilePath);
+            populateTableFromExcel(absolutePath);
         } catch (IOException e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(this, "Error reading Excel file: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
