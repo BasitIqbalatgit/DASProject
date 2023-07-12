@@ -13,7 +13,7 @@ public class RecordsAdder {
 
     public void saveUser(UserDTO objUser, Response objResponse, Connection dbConnection) {
         try {
-            String query = "INSERT INTO user (username, email, password, role) VALUES (?, ?, ?,?);";
+            String query = "INSERT INTO user (username, email, password, role) VALUES (?, ?, ?,?)";
             PreparedStatement p = dbConnection.prepareStatement(query);
            
             p.setString(1, objUser.getUsername());
