@@ -5,6 +5,7 @@
 package ui.panels;
 
 import common.Student;
+import controller.SISController;
 
 /**
  *
@@ -273,6 +274,7 @@ public class AddDetails extends javax.swing.JPanel {
         std.setFscMarks(Double.parseDouble(jTextField5.getText()));
         std.setRegNo(jTextField6.getText());
         std.setProg(jTextField7.getText());
+        SISController.writeStudentToExcel(std);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed

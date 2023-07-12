@@ -15,7 +15,9 @@ public class AdminDashboard extends JFrame {
     private JPanel menuPanel;
     private JPanel contentPanel;
 
-
+    public static void main(String[] args) {
+        new AdminDashboard().setVisible(true);
+    }
     public AdminDashboard() {
        
 
