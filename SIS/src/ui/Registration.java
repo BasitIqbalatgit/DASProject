@@ -25,6 +25,10 @@ public class Registration extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         setTitle("Register");
     }
+    public static void main(String [] args){
+        new Registration().setVisible(true);
+        
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
