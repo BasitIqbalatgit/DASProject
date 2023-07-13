@@ -11,13 +11,11 @@ package ui;
 import common.Student;
 import dsa.linklist.LinkedList;
 import dsa.linklist.Node;
-
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import model.StudentInformation;
 
 public class StudentList extends JPanel {
@@ -42,7 +40,7 @@ public class StudentList extends JPanel {
         JPanel searchPanel = new JPanel();
         searchField = new JTextField(20);
         JButton searchButton = new JButton("Search");
-        searchButton.addActionListener(e -> searchTable(searchField.getText(),list));
+        searchButton.addActionListener(e -> searchTable(searchField.getText(), list));
         searchPanel.add(searchField);
         searchPanel.add(searchButton);
         add(searchPanel, BorderLayout.NORTH);
@@ -63,7 +61,7 @@ public class StudentList extends JPanel {
         model.addColumn("Nationality");
         model.addColumn("Status");
         model.addColumn("Group");
-        
+
         list = StudentInformation.getStudents(absolutePath);
         // Add rows to the model using the data from the ArrayList
         Node<Student> currentNode = list.head;
@@ -85,20 +83,67 @@ public class StudentList extends JPanel {
         }
         table = new JTable(model);
         JScrollPane scrollPane = new JScrollPane(table);
-        add(scrollPane,BorderLayout.CENTER);
+        add(scrollPane, BorderLayout.CENTER);
+    }
+    
+
+class StudentPanel extends JPanel {
+
+        public StudentPanel(Student student) {
+            setLayout(new GridBagLayout());
+            GridBagConstraints gbc = new GridBagConstraints();
+            gbc.gridx = 0;
+            gbc.gridy = 0;
+            gbc.anchor = GridBagConstraints.WEST;
+
+            addLabel("Registration Number:", gbc);
+            addData(student.getRegNo(), gbc);
+
+            addLabel("Program:", gbc);
+            addData(student.getProg(), gbc);
+
+            addLabel("Name:", gbc);
+            addData(student.getName(), gbc);
+
+            addLabel("Father's Name:", gbc);
+            addData(student.getFatherName(), gbc);
+
+            addLabel("Nationality:", gbc);
+            addData(student.getNationality(), gbc);
+
+            addLabel("Status:", gbc);
+            addData(student.getStatus(), gbc);
+
+            addLabel("Group:", gbc);
+            addData(student.getGroup(), gbc);
+        }
+
+        private void addLabel(String labelText, GridBagConstraints gbc) {
+            JLabel label = new JLabel(labelText);
+            add(label, gbc);
+            gbc.gridx++;
+        }
+
+        private void addData(String dataText, GridBagConstraints gbc) {
+            JLabel dataLabel = new JLabel(dataText);
+            gbc.gridx++;
+            gbc.gridwidth = GridBagConstraints.REMAINDER;
+            add(dataLabel, gbc);
+            gbc.gridy++;
+            gbc.gridx = 0;
+            gbc.gridwidth = 1;
+        }
     }
 
-    private void searchTable(String searchText,LinkedList<Student> list) {
+    private void searchTable(String searchText, LinkedList<Student> list) {
         if (searchText.isEmpty()) {
-            
-            
-            
+
             return; // Don't perform search if the search text is empty
         }
         String searchLowercase = searchText.toLowerCase();
         boolean found = false;
 
-        Student s=list.find(searchText);
+        Student s = list.find(searchText);
         JOptionPane.showMessageDialog(studentList, s.toString());
     }
 }
