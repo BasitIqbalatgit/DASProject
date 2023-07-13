@@ -37,101 +37,26 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  * @author fawad
  */
 public class SISController {
+
     DALManager dalManager;
-    public SISController(){
-        dalManager=new DALManager();
+
+    public SISController() {
+        dalManager = new DALManager();
     }
+
     public void verifyUser(UserDTO user, Response res) {
-        dalManager.verifyUser(user,res);
+        dalManager.verifyUser(user, res);
     }
-    public void saveUser(UserDTO user,Response res){
+
+    public void saveUser(UserDTO user, Response res) {
         dalManager.saveUser(user, res);
     }
-    public static JScrollPane getStudentListPanel() {
-        LinkedList<Student> list;
-        try {
-            String relativePath = "../data/students.xlsx";
 
-            File file = new File(relativePath);
-            String absolutePath = file.getAbsolutePath();
+    public static void writeStudentToExcel(Student student) {
+        String relativePath = "../data/students.xlsx";
 
-            list = StudentInformation.getStudents(absolutePath);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            list = null;
-        }
-//        if(!(list==null)){
-        // Create a DefaultTableModel to hold the data for the JTable
-        DefaultTableModel model = new DefaultTableModel();
-
-        // Add columns to the model
-        model.addColumn("Reg No#");
-        model.addColumn("Program");
-        model.addColumn("Name");
-        model.addColumn("Father's Name");
-        model.addColumn("Nationality");
-        model.addColumn("Status");
-        model.addColumn("Group");
-
-        // Add rows to the model using the data from the ArrayList
-         if (list != null) {
-        Node<Student> node = list.head;
-        while (node != null) {
-            Student student = node.getData();
-            model.addRow(new Object[]{
-                student.getRegNo(),
-                student.getProg(),
-                student.getName(),
-                student.getFatherName(),
-                student.getNationality(),
-                student.getStatus(),
-                student.getGroup()
-            });
-            node = node.next;
-        }
-    }
-
-        // Create a JTable with the created model
-        JTable table = new JTable(model);
-
-        // Create a JScrollPane to hold the JTable
-        JScrollPane scrollPane = new JScrollPane(table);
-
-        // Add the JScrollPane to the JFrame
-        // Return Jpanel
-        return scrollPane;
-//        }
-//        
-//        return new JScrollPane();
-    }
-    public static void searchTable(JTable table,String searchText) {
-        if (searchText.isEmpty()) {
-            return; // Don't perform search if the search text is empty
-        }
-
-        String searchLowercase = searchText.toLowerCase();
-
-        boolean found = false;
-
-        for (int row = 0; row < table.getRowCount(); row++) {
-            String regNo = String.valueOf(table.getValueAt(row, 1)).toLowerCase(); // Assuming Reg# is at index 1
-            if (regNo.contains(searchLowercase)) {
-                table.setRowSelectionInterval(row, row);
-                table.scrollRectToVisible(table.getCellRect(row, 0, true));
-                found = true;
-                break;
-            }
-        }
-       
-        if (!found) {
-            JOptionPane.showMessageDialog(null, "No results found for: " + searchText, "Search Result", JOptionPane.INFORMATION_MESSAGE);
-        }
-    }
-  public static void writeStudentToExcel(Student student) {
-      String relativePath = "../data/students.xlsx";
-
-            File file = new File(relativePath);
-            String absolutePath = file.getAbsolutePath();
+        File file = new File(relativePath);
+        String absolutePath = file.getAbsolutePath();
         try {
             Workbook workbook = null;
             Sheet sheet;
@@ -185,58 +110,5 @@ public class SISController {
             ex.printStackTrace();
         }
     }
-  
-  
-  public static JScrollPane getCourseListPanel() {
-        LinkedList<Course> list;
-        try {
-            String relativePath = "../data/courses.xlsx";
 
-            File file = new File(relativePath);
-            String absolutePath = file.getAbsolutePath();
-
-            list = CourseInformation.getCourses(absolutePath);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            list = null;
-        }
-//        if(!(list==null)){
-        // Create a DefaultTableModel to hold the data for the JTable
-        DefaultTableModel model = new DefaultTableModel();
-
-        // Add columns to the model
-        model.addColumn("Course Code#");
-        model.addColumn("Course Name");
-        model.addColumn("Credit Hour");
-        
-
-        // Add rows to the model using the data from the ArrayList
-         if (list != null) {
-        Node<Course> node = list.head;
-        while (node != null) {
-            Course course = node.getData();
-            model.addRow(new Object[]{
-                course.getCourseCode(),
-                course.getCourseName(),
-                course.getCreditHour(),
-                
-            });
-            node = node.next;
-        }
-    }
-
-        // Create a JTable with the created model
-        JTable table = new JTable(model);
-
-        // Create a JScrollPane to hold the JTable
-        JScrollPane scrollPane = new JScrollPane(table);
-
-        // Add the JScrollPane to the JFrame
-        // Return Jpanel
-        return scrollPane;
-//        }
-//        
-//        return new JScrollPane();
-    }
 }
-

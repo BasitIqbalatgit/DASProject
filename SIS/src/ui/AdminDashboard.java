@@ -6,6 +6,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import ui.panels.AddDetails;
 import ui.panels.EnrollStudents;
 
 
@@ -124,7 +125,7 @@ public class AdminDashboard extends JFrame {
 
                 contentPanel.removeAll();
                 if (buttonText.equals("Enroll Students")) {
-                    contentPanel.add(new EnrollStudents());
+                    contentPanel.add(new AddDetails());
                 } else if (buttonText.equals("View Students")) {
                     try {
                         contentPanel.add(new StudentList());

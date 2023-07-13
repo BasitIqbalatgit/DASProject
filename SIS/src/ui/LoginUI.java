@@ -39,7 +39,7 @@ public class LoginUI extends JFrame {
 
         JLabel titleLabel = new JLabel("Login");
         titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
-        titleLabel.setForeground(new Color(41, 128, 185));
+        titleLabel.setForeground(new Color(22, 160, 133));
         mainPanel.add(titleLabel, gbc);
 
         gbc.gridy++;
@@ -72,7 +72,7 @@ public class LoginUI extends JFrame {
         passwordField.setText("123");
         JButton loginButton = new JButton("Login");
         loginButton.setForeground(Color.WHITE);
-        loginButton.setBackground(new Color(41, 128, 185));
+        loginButton.setBackground(new Color(22, 160, 133));
         loginButton.setFocusPainted(false);
         loginButton.setFont(new Font("Arial", Font.BOLD, 12));
         loginButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
