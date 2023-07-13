@@ -140,10 +140,39 @@ class StudentPanel extends JPanel {
 
             return; // Don't perform search if the search text is empty
         }
-        String searchLowercase = searchText.toLowerCase();
+        String searchtoUpperCase = searchText.toUpperCase();
         boolean found = false;
 
-        Student s = list.find(searchText);
-        JOptionPane.showMessageDialog(studentList, s.toString());
+        Student s = list.find(searchtoUpperCase);
+        if(s==null){
+            JOptionPane.showMessageDialog(null, "Not Found: "+searchtoUpperCase);
+            return;
+        }
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        // Create the JFrame
+        JFrame frame = new JFrame();
+        
+        // Set the title of the frame
+        frame.setTitle("Student Information");
+        
+        // Set the size of the frame
+        frame.setSize(300, 200);
+        
+        // Set the layout manager for the frame's content pane (e.g., BorderLayout)
+        // Replace 'studentPanel' with your custom panel object
+        frame.getContentPane().setLayout(new BorderLayout());
+        frame.getContentPane().add(new StudentPanel(s), BorderLayout.CENTER);
+        
+        
+        
+        // Make the frame visible
+        frame.setVisible(true);
     }
+
+    
 }

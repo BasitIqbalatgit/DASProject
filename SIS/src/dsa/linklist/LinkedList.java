@@ -1,5 +1,6 @@
 package dsa.linklist;
 
+import common.Course;
 import common.Student;
 import model.Message;
 import model.MessageType;
@@ -105,9 +106,23 @@ public class LinkedList<T> {
     }
 
     public Student find(String key) {
+        
         Node<Student> temp = (Node<Student>) head;
+        
         while (temp != null) {
-            if (temp.data.getRegNo().equals(key)) {
+            if (temp.data.getRegNo().toUpperCase().equals(key)) {
+                return temp.data;
+            }
+            temp = temp.next;
+        }
+        return null;
+    }
+    public Course findCourse(String key) {
+        
+        Node<Course> temp = (Node<Course>) head;
+        
+        while (temp != null) {
+            if (temp.data.getCourseCode().toUpperCase().equals(key)) {
                 return temp.data;
             }
             temp = temp.next;

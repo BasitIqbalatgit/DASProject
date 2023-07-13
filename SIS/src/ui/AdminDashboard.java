@@ -134,7 +134,11 @@ public class AdminDashboard extends JFrame {
 
                 } else if (buttonText.equals("View Courses")) {
                    
-                    
+                    try {
+                        contentPanel.add(new CourseList());
+                    } catch (IOException ex) {
+                        //Logger.getLogger(AdminDashboard.class.getName()).log(Level.SEVERE, null, ex);
+                    }
 
                 } 
                 contentPanel.revalidate();

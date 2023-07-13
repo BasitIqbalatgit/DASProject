@@ -5,6 +5,7 @@
 package controller;
 
 import DAL.DALManager;
+import common.Course;
 import common.Student;
 import java.io.File;
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import javax.swing.JOptionPane;
+import model.CourseInformation;
 //import java.lang.System.Logger;
 //import java.lang.System.Logger.Level;
 import org.apache.poi.EncryptedDocumentException;
@@ -182,6 +184,59 @@ public class SISController {
         } catch (IOException | EncryptedDocumentException ex) {
             ex.printStackTrace();
         }
+    }
+  
+  
+  public static JScrollPane getCourseListPanel() {
+        LinkedList<Course> list;
+        try {
+            String relativePath = "../data/courses.xlsx";
+
+            File file = new File(relativePath);
+            String absolutePath = file.getAbsolutePath();
+
+            list = CourseInformation.getCourses(absolutePath);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            list = null;
+        }
+//        if(!(list==null)){
+        // Create a DefaultTableModel to hold the data for the JTable
+        DefaultTableModel model = new DefaultTableModel();
+
+        // Add columns to the model
+        model.addColumn("Course Code#");
+        model.addColumn("Course Name");
+        model.addColumn("Credit Hour");
+        
+
+        // Add rows to the model using the data from the ArrayList
+         if (list != null) {
+        Node<Course> node = list.head;
+        while (node != null) {
+            Course course = node.getData();
+            model.addRow(new Object[]{
+                course.getCourseCode(),
+                course.getCourseName(),
+                course.getCreditHour(),
+                
+            });
+            node = node.next;
+        }
+    }
+
+        // Create a JTable with the created model
+        JTable table = new JTable(model);
+
+        // Create a JScrollPane to hold the JTable
+        JScrollPane scrollPane = new JScrollPane(table);
+
+        // Add the JScrollPane to the JFrame
+        // Return Jpanel
+        return scrollPane;
+//        }
+//        
+//        return new JScrollPane();
     }
 }
 
