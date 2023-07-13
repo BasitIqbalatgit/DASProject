@@ -5,8 +5,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import ui.panels.AddDetails;
-import controller.SISController;
+import java.io.IOException;
+import ui.panels.EnrollStudents;
 
 
 public class AdminDashboard extends JFrame {
@@ -21,7 +21,7 @@ public class AdminDashboard extends JFrame {
     public AdminDashboard() {
        
 
-            setTitle("Student Information System - Dashboard");
+            setTitle("Student Information System - Admin Dashboard");
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             setExtendedState(JFrame.MAXIMIZED_BOTH);
             setLayout(new BorderLayout());
@@ -124,13 +124,21 @@ public class AdminDashboard extends JFrame {
 
                 contentPanel.removeAll();
                 if (buttonText.equals("Enroll Students")) {
-                    contentPanel.add(new AddDetails());
+                    contentPanel.add(new EnrollStudents());
                 } else if (buttonText.equals("View Students")) {
-                    contentPanel.add(new StudentList());
+                    try {
+                        contentPanel.add(new StudentList());
+                    } catch (IOException ex) {
+                        //Logger.getLogger(AdminDashboard.class.getName()).log(Level.SEVERE, null, ex);
+                    }
 
                 } else if (buttonText.equals("View Courses")) {
                    
-                    
+                    try {
+                        contentPanel.add(new CourseList());
+                    } catch (IOException ex) {
+                        //Logger.getLogger(AdminDashboard.class.getName()).log(Level.SEVERE, null, ex);
+                    }
 
                 } 
                 contentPanel.revalidate();
@@ -140,7 +148,7 @@ public class AdminDashboard extends JFrame {
         return button;
     }
     private void createContentPanel() {
-        contentPanel = new AddDetails();
+        contentPanel = new EnrollStudents();
 
         contentPanel.setLayout(new BorderLayout());
         add(contentPanel, BorderLayout.CENTER);

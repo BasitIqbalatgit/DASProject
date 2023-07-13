@@ -1,11 +1,13 @@
 package dsa.linklist;
 
+import common.Course;
+import common.Student;
 import model.Message;
 import model.MessageType;
 
 public class LinkedList<T> {
 
-    private Node<T> head;
+    public Node<T> head;
     private int size;
 
     public LinkedList() {
@@ -33,7 +35,7 @@ public class LinkedList<T> {
         }
     }
 
-    public void addAtEnd(T value) {
+    public void add(T value) {
         Node<T> n = new Node<>(value);
         if (isEmpty()) {
             head = n;
@@ -46,18 +48,6 @@ public class LinkedList<T> {
             p.next = n;
             size++;
         }
-    }
-
-    public void addAfter(T key, T value) {
-        Node<T> n = new Node<>(value);
-        Node<T> p = find(key);
-        if (p == null) {
-            System.out.println("Node with key " + key + " not found");
-            return;
-        }
-        n.next = p.next;
-        p.next = n;
-        size++;
     }
 
     public void delete(T key) {
@@ -115,11 +105,25 @@ public class LinkedList<T> {
         }
     }
 
-    public Node<T> find(T key) {
-        Node<T> temp = head;
+    public Student find(String key) {
+        
+        Node<Student> temp = (Node<Student>) head;
+        
         while (temp != null) {
-            if (temp.data.equals(key)) {
-                return temp;
+            if (temp.data.getRegNo().toUpperCase().equals(key)) {
+                return temp.data;
+            }
+            temp = temp.next;
+        }
+        return null;
+    }
+    public Course findCourse(String key) {
+        
+        Node<Course> temp = (Node<Course>) head;
+        
+        while (temp != null) {
+            if (temp.data.getCourseCode().toUpperCase().equals(key)) {
+                return temp.data;
             }
             temp = temp.next;
         }
@@ -166,18 +170,15 @@ public class LinkedList<T> {
     }
 
     public boolean hasError() {
-        if (isEmpty()) {
-            return false;
-        } else {
-            Node<Message> n = (Node<Message>) head;
-            while (n != null) {
-                if (n.data.Type == MessageType.Error || n.data.Type == MessageType.Exception) {
-                    return true;
-                }
-            }
-
+    Node<Message> n = (Node<Message>) head;
+    while (n != null) {
+        if (n.getData().Type == MessageType.Error || n.getData().Type == MessageType.Exception) {
+            return true;
         }
-        return false;
+        n = n.next;
     }
+    return false;
+}
+
 
 }
